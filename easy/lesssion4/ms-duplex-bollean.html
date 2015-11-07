@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-duplex-bollean</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test">
+		<label><input type="radio" ms-duplex-bollean="onlinePayment" value="true">是</label>
+		<label><input type="radio" ms-duplex-bollean="onlinePayment" value="false">否</label>
+		<div>
+			是否确认?{{onlinePayment}}
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			onlinePayment:"female"
+			
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

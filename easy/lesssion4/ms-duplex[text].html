@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-duplex[text]</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test">
+		<input type="text" ms-duplex="usename"/>	
+		<input type="password" ms-duplex="password"/>	
+		<textarea ms-duplex="profile"></textarea>
+		<ul>
+			<li>{{usename}}</li>
+			<li>{{password}}</li>
+			<li>{{profile}}</li>
+		
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			usename:"felilu",
+			password:'Abc123',
+			profile:'test string'
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

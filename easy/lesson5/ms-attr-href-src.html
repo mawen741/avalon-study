@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-attr-href-src 属性操作</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+
+</head>
+<body>
+	<form ms-controller="attr">
+		<h2>布尔属性绑定（ms-attr-disabled.ms-attr-readonly）</h2>	
+		<label>姓名：<input type="text" ms-duplex="textModel" ms-attr-disabled="t1"></label>
+		<label>年龄：<input type="text" ms-duplex="age" ms-attr-readonly="r1"></label>
+		<div>
+			<span>性别：</span>
+			<label><input type="radio" ms-duplex-string="sex" value="male">男</label>
+			<label><input type="radio" ms-duplex-string="sex" value="female">女</label>
+			
+		</div>
+		<hr>
+		<select>
+			<option value="IT">IT</option>
+			<option value="销售" ms-attr-selected="s1">销售</option>
+			<option value=""产品>产品</option>
+		</select>
+		<hr>
+		<label><input type="checkbox" ms-attr-checked="c1">足球</label>
+		<label><input type="checkbox" ms-attr-checked="c1">篮球</label>
+		<label><input type="checkbox">棒球</label>
+		<hr>
+		<h2>字符串属性绑定（ms-attr-id,ms-attr-name,ms-attr-title,ms-src,ms-href,ms-attr-data-url）</h2>
+		<a ms-href="{{path}}">百度一下</a>
+		<a ms-attr-id="{{id}}" ms-attr-name="{{name}}" ms-attr-href="{{path}}/new/city.html">百度一下</a>
+		<img ms-src="src" ms-title="title">
+	</form>
+	
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"attr",
+			textModel:"star",
+			t1:true,
+			age:20,
+			r1:true,
+			sex:'female',
+			s1:true,
+			c1:true,
+			path:"www.baidu.com",
+			id:"id1",
+			name:"这是一个name",
+			src:"www.image.com/asd/asd.png",
+			title:"图片的title"
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jq-toDo-list</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style>
+		form{
+			margin-top: 20px;
+			width: 500px;
+		}
+		.del{
+			margin-left: 10px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div ms-controller="start">
+		<form ms-on-submit="add" >
+			<input type="text" class="form-control" ms-duplex="txt">
+		</form>
+		<p ms-if="items.size()>0">你还有{{items.size()}}项任务未做</p>
+		<ol>
+			<li ms-repeat="items">{{el}} <a href="javascript:" class="del" ms-on-click="$remove">x</a></li>
+		</ol>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm = avalon.define({
+			$id:"start",
+			txt:'',
+			items:[],
+			add:function(e){
+				e.preventDefault();
+				vm.items.push(vm.txt);
+				vm.txt = '';
+			}
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

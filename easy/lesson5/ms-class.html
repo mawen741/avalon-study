@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-class 类名class操作</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style>
+	.test{
+		width: 100px;
+		height: 100px;
+		border:1px solid #dcdcdc;
+		color: red;
+		-webkit-user-select:none;
+		-moz-user-select:none;
+		-ms-user-select:none;
+		-o-user-select:none;
+		user-select:none;
+	}
+		.aaa{
+			color: blue;
+			border:1px solid #dcdcdc;
+		}
+	</style>
+</head>
+<body ms-controller="ms-class">
+	<div class="test" ms-class="aaa:toggle" ms-click="click">
+		点我试试
+	</div>
+	<div ms-class="aaa" ms-class-1="bbb" ms-class-2="ccc">
+		它的类名是 aaa  bbb  ccc
+	</div>
+	<div ms-class-2="aaa" ms-class="bbb" ms-class-1="ccc">
+		它的类名是  bbb  ccc   aaa 
+	</div>
+	<div ms-class="bbb" ms-class-1="aaa" ms-class-2="ccc">
+		它的类名是 bbb  aaa  ccc
+	</div>
+	<div ms-class="xxx yyy zzz">
+		它的类名是 xxx  yyy  zzz
+	</div>
+	<div ms-class="XXX YYY ZZZ:true">
+		它的类名是 XXX  YYY  ZZZ
+	</div>
+	<div ms-class="XXX YYY ZZZ:false">
+		它没有类名是
+	</div>
+	<div ms-class="XXX YYY:false ZZZ">
+		这个false并没有起作用
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"ms-class",
+			toggle:true,
+			click:function(){
+				vm1.toggle = !vm1.toggle;
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

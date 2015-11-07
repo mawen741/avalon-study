@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jq-toDo-list</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
+	<style>
+		form{
+			margin-top: 20px;
+			width: 500px;
+		}
+		.del{
+			margin-left: 10px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<form id="form">
+		<input type="text" class="form-control" id="inp">
+	</form>
+	<p id="count"></p>
+	<ol id="list"></ol>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$("#form").submit(function(e){
+			var val = $("#inp").val(),
+				h = '';
+				console.log(val);
+				val == ''?"":h += '<li>'+val+'<a href="javascript:" class="del">x</a></li>';$("#list").append(h);
+				$("#inp").val("");
+				$("#list").children("li").length == ''?$("#count").html(''):$("#count").html("您有"+$("#list").children("li").length+"个未完成的任务");
+				return false;
+	})
+		$("#list").on("click",".del",function(){
+			$(this).parent("li").remove();
+			$("#list").children("li").length == ''?$("#count").html(''):$("#count").html("您有"+$("#list").children("li").length+"个未完成的任务");
+		})
+})
+</script>
+</html>

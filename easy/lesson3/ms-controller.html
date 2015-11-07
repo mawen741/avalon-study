@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms - controller</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="aaa">
+		<div>{{name}}:{{color}}</div>
+		<div ms-controller="bbb">
+			<div>{{name}}:{{color}}</div>
+			<div ms-controller="ccc">
+				<div>{{name}}:{{color}}</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"aaa",
+			name:"linger",
+			color:"red"
+		})
+		var vm2 = avalon.define({
+			$id:"bbb",
+			name:"safari",
+			color:"blue"
+		})
+		var vm3 = avalon.define({
+			$id:"ccc",
+			name:"chorme",
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-value</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test" class="ms-controller">
+			<input type="text" ms-value="text"> 	
+			<textarea ms-value="xxx{{text+'!!'}}yyy"></textarea>					
+	</div>
+</body>
+<script type="text/javascript">
+	
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			text:"1111"
+		})
+		
+		avalon.scan();
+	})
+
+</script>
+</html>

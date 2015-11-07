@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-duplex-text</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test">
+		<label><input type="radio" ms-duplex-text="gender" value="male">男</label>
+		<label><input type="radio" ms-duplex-text="gender" value="female">女</label>
+		<div>
+			性别:{{gender}}
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			gender:"female"
+			
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

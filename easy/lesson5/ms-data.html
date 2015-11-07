@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-data 数据绑定</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+
+</head>
+<body>
+	<div ms-controller="test" ms-visible="isShowBox">
+		<div ms-data-number="number"
+			 ms-data-number2="number2"
+			 ms-data-bool="bool"
+			 ms-data-bool2="bool2"
+			 ms-data-nn="nn"
+			 ms-data-cc="cc"
+			 ms-data-array="array"
+			 ms-data-date="date"
+			 ms-data-object="object"
+			 ms-data-fn="show"
+			 ms-click="show"
+		>
+		<!-- 对象和数组没绑定上 -->
+			绑定数据,点我
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			number:111,
+			number2:NaN,
+			bool:false,
+			bool2:true,
+			nn:null,
+			cc:undefined,
+			array:[1,2,3],
+			date:new Date,
+			object:{
+				name:"这是数据"
+			},
+			show:function(){
+				var that = avalon(this); //获取鼠标点击对象
+				//打印出data数据  注意：array  date  object三个的取值方式不同，不会显示到data-attr的
+				console.log(
+					that.data("number"),that.data("number2"),
+					that.data("bool"),that.data("bool2"),
+					that.data("nn"),that.data("cc"),
+					this["data-array"],this["data-date"],this["data-object"],
+					that.data("fn"));
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

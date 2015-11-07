@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>interpolation-express</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test" class="ms-controller">
+		<!-- suffix并未起作用 -->
+		<!-- <h1 ms-{{suffix}}="aaa">{{word}}!!!!</h1>									 -->
+		<h1 ms-[[suffix]]="aaa">[[word]]!!!!</h1>									
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.config({
+		interpolate:["[[","]]"]
+	})
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			word:"Hello World",
+			suffix:"duplex"
+		})
+		
+		avalon.scan();
+	})
+
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-duplex[select]</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test">
+		<select ms-duplex="flight">
+			<option value="天津-北京">天津-北京</option>
+			<option value="河北-北京">河北-北京</option>
+			<option value="成都-北京">成都-北京</option>
+			<option value="北京-成都">北京-成都</option>
+		</select>
+		<select multiple="true" ms-duplex="hotel">
+			<option value="旅馆1">旅馆1</option>
+			<option value="旅馆2">旅馆2</option>
+			<option value="旅馆3">旅馆3</option>
+			<option value="旅馆4">旅馆4</option>
+			
+		</select>
+		<div>
+			航班：{{flight}}
+		</div>
+		<div>
+			酒店：{{hotel}}
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			flight:"",
+			hotel:[]
+			
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>filter</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test">
+		<div>{{content|html}}</div>		
+		<div>{{word1|uppercase}}</div>		
+		<div>{{word2|lowercase}}</div>		
+		<div>{{string|truncate(3,'...')}}</div>		
+		<div>{{variable|camelize}}</div>		
+		<div>{{string2|escape}}</div>		
+		<div>{{money|currency('$')}}</div>		
+		<div>{{num|number(3)}}</div>		
+		<div>{{num|number(2,'.')}}</div>		
+		<div>{{num|number(2,'.',',')}}</div>		
+		<div>{{custom|html|uppercase}}</div>		
+		<div>{{custom|text|uppercase}}</div>		
+		<div>{{"aaa"|myFilter}}</div>		
+		<div>{{"bbb"|myFilter}}</div>		
+		<div>{{"ccc"|myFilter}}</div>		
+	</div>
+</body>
+<script type="text/javascript">
+	// 自定义过滤器
+	avalon.filters.myFilter = function(str){ //str需要过滤的字符串，其余都是参数
+
+		return {
+			'aaa':'this is my fliter '+str,
+			'bbb':'this is my fliter '+str,
+			'ccc':'this is my fliter '+str,
+			'ddd':'this is my fliter '+str
+		}[str];
+	}
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			content:"<b>没有传参，用于将文本绑定转换为HTML绑定</b>",
+			word1:"avalon learing 大写化",
+			word2:"Felix LU 小写化",
+			string:"对长字符串进行揭短",
+			string2:"对长字符串进行揭短",
+			variable:"webkit-box-flex 驼峰化处理",
+			money:12321323.1233,
+			num:2134324324.3333,
+			custom:'<i>这是一段自定义的字符串 This is a custom string</i>'
+		})
+		avalon.scan();
+	})
+
+</script>
+</html>

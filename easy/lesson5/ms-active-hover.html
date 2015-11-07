@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-active-hover 元素active和hover效果操作</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style>
+		.active{
+			background-color: black;
+			color:white;
+		}
+		.ms-class-test{
+			background-color: green;
+			width: 300px;
+			height: 100px;
+			border: 1px solid #dcdcdc;
+		}
+		.c-red{
+			background-color: red;
+		}
+		.c-blue{
+			background-color: blue;
+		}
+	</style>
+</head>
+<body ms-controller="test">
+	<div ms-active="active">
+		测试：Active
+	</div>
+	<div class="ms-class-test" ms-hover="c-{{color}}:toggle">
+		
+	</div>
+	<button type="button" ms-click="changeToggle">点我改变类名</button>
+	<button type="button" ms-click="switchColor">点我改变toggle</button>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			color:"red",
+			toggle:true,
+			changeToggle:function(){
+				vm1.toggle=!vm1.toggle;
+			},
+			switchColor:function(){
+				vm1.color=vm1.color=='red'?"blue":"red";
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

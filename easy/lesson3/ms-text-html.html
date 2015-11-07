@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>interpolation-express</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<body>
+	<div ms-controller="test" class="ms-controller">
+			<div>{{content}}</div>							
+			<div>{{content|html}}</div>			
+			<hr/>					
+			<div ms-text="content"></div>	
+			<div ms-html="content"></div>				
+	</div>
+</body>
+<script type="text/javascript">
+	
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			content:"<b>Hello World</b>"
+		})
+		
+		avalon.scan();
+	})
+
+</script>
+</html>

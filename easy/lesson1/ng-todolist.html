@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+<head>
+	<meta charset="UTF-8">
+	<title>jq-toDo-list</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/angular.js"></script>
+	<style>
+		form{
+			margin-top: 20px;
+			width: 500px;
+		}
+		.del{
+			margin-left: 10px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div ng-controller="start">
+		<form ng-submit="add()">
+			<input type="text" class="form-control" ng-model="txt">
+		</form>
+		<p ng-hide="items.length===0">你还有{{items.length}}项任务未做</p>
+		<ol>
+			<li ng-repeat="item in 	items">{{item}} <a href="javascript:" class="del" ng-click="del($index)">x</a></li>
+		</ol>
+	</div>
+</body>
+<script type="text/javascript">
+	var module = angular.module("todo",[]);
+		module.controller("start",["$scope",function($scope){
+			$scope.items= [];
+			$scope.add = function(v){
+				if($scope.txt.length){
+					$scope.items.push($scope.txt);
+				}
+			}
+			$scope.del = function(index){
+				$scope.items.splice(index,1);
+			}
+		}])
+
+</script>
+</html>
