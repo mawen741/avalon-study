@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-css-2 对央视css进行操作</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<div style="background:red" ms-css-width="w" ms-css-height="h"></div>
+		<p>{{w}} * {{h}}</p>
+		<p>W:<input type="text" ms-duplex="w"/></p>
+		<p>H:<input type="text" ms-duplex="h"/></p>
+		<button ms-click="click">点我增加10</button>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			w:100,
+			h:100,
+			click:function(){
+				vm1.w=parseFloat(vm1.w)+10;
+				vm1.h=parseFloat(vm1.h)+10;
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>vars_array 对象的临时变量</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<ul>
+			<li ms-repeat="data">
+				{{countIndex()}}--{{$key}}--{{$val}}
+			</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+var index =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			index:1,
+			a:0,
+			data:{
+				aa:11,
+				bb:22,
+				cc:33,
+				dd:44
+			},
+			countIndex:function(){
+				// vm1.a = vm1.index;
+				// alert(vm1.a)
+				// return vm1.a+1
+				// return Number(JSON.stringify(vm1.a))++;
+				// vm1.a = vm1.a+1;
+				// return vm1.a;
+				return index++;
+				
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

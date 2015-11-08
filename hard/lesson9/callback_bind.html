@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>callback_bind 回调绑定属性</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		td{
+			border:1px solid #dcdcdc;
+		}
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<ul ms-each="array" data-each-rendered="changeArray">
+			<li>{{el}}</li>
+		</ul>
+		<ul ms-with="data" ms-with-sorted="keys">
+			<li>{{$key}}--{{$val}}</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+var index =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			array:['a','b','c','d'],
+			changeArray:function(status){ //status形参
+				console.log(this);
+				console.log(status);
+			},
+			data:{
+				aaa:111,
+				bbb:222,
+				ccc:333,
+				ddd:444
+			},
+			changeData:function(status){
+				console.log(this);
+				console.log(status);
+			},
+			keys:function(){
+				return ['ddd','bbb','aaa','ccc'];
+			}
+		});
+		setTimeout(function(){
+			vm1.array.push("e");
+		},1000)
+		setTimeout(function(){
+			vm1.array.set(0,'aa');
+		},3000)
+		setTimeout(function(){
+			vm1.array.pop();
+		},5000)
+		setTimeout(function(){
+			vm1.array.reverse();
+		},7000)
+		setTimeout(function(){
+			vm1.array.removeAll();
+		},9000)
+		setTimeout(function(){
+			vm1.data={
+				a:1,
+				b:2,
+				c:3
+			};
+		},11000)
+		avalon.scan();
+
+	})
+
+</script>
+</html>

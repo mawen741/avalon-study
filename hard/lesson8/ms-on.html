@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-on 事件绑定</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<fieldset>
+			<legend>有关时间回调传参</legend>
+			<div ms-on-mouseenter="callback" ms-on-mouseout="callback">{{status}}
+				<hr>
+				<input type="text" ms-on-input="check"/>
+				{{field}}
+				<button ms-on-click="argsClick($event,100,firstName)">点我</button>
+				<div ms-each="array">
+					<p ms-click="loopClick($event,el)">{{el}}</p>
+				</div>
+				<div>
+					<button ms-click="submit">点我</button>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			status:"event-type",
+			firstName:"tom",
+			callback:function(e){
+				vm1.status = e.type;
+			},
+			field:"value-event-type",
+			check:function(e){
+				vm1.field = this.value+" "+e.type;
+			},
+			argsClick:function(e,a,b){
+				alert([].slice.call(arguments).join(" "));
+			},
+			array:['a','b','c'],
+			loopClick:function(e,a){
+				alert(a+" "+e.type);
+			},
+			submit:function(){
+				var data = JSON.stringify(vm1.$model);
+				alert(data);
+				alert(typeof data);
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

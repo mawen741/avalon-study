@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-event-2 事件绑定2</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<fieldset>
+			<legend>一个元素绑定多个同种事件的回调</legend>
+		
+			<button ms-on-mouseenter-1="fn1"  ms-on-mouseenter="fn2"  ms-on-mouseenter-3="fn3">鼠标移上来</button>
+		
+		</fieldset>
+	</div>
+</body>
+<script type="text/javascript">
+var count =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			fn1:function(){
+				alert(11111);
+			},
+			fn2:function(){
+				alert(22222);
+			},
+			fn3:function(){
+				alert(33333);
+			}
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

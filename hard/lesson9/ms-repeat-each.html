@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-repeat-each 循环绑定属性</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<ul ms-each="array">
+			<li>{{el}}</li>
+		</ul>
+		<ul>
+			<li ms-repeat-elem="array">{{$index}} -- {{elem}}</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+var count =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			array:["aaa","bbb","ccc","ddd"]
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

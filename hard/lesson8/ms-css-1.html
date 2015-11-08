@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-css-1 对央视css进行操作</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<div style="width:100px;height:100px;" ms-css-background="background"></div>
+		<select ms-duplex="background">
+			<option value="red">红</option>
+			<option value="yellow">黄</option>
+			<option value="green">绿</option>
+		</select>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			background:"green"
+		});
+		vm1.$watch("background",function(v){
+			vm1.background = v;
+		})
+		avalon.scan();
+
+	})
+
+</script>
+</html>

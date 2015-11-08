@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>vars_outer 对象的临时变量</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		td{
+			border:1px solid #dcdcdc;
+		}
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<table>
+			<tr ms-repeat="array">
+				<td ms-repeat-elem="el">{{$outer.$index}}.{{$index}}--{{elem}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+var index =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			array:[['a','b','c','d'],['aa','bb','cc','dd'],['aaa','bbb','ccc','ddd']]
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

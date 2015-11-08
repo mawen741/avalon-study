@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-repeat-with 循环绑定属性</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<ul ms-with="data">
+			<li> {{$key}} -- {{$val}}</li>
+		</ul>
+		<ul>
+			<li ms-repeat="data">{{$key}} -- {{$val}}</li>
+		</ul>
+		<ul>
+			<li ms-repeat-item="array" ms-click="$remove">
+				{{item}}--{{$index}}--{{$first}}--{{$last}} 点击自身就会被删除
+			</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+var count =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			data:{
+				aa:11,
+				bb:22,
+				cc:33,
+				dd:44
+			},
+			array:["aa11aa","bb22bb","cc33cc","dd44dd"]
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>

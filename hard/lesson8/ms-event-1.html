@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-event-1 事件绑定</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<div >
+		<fieldset>
+			<legend>一个元素绑定多个同种事件的回调</legend>
+			<div ms-controller="test">
+				<div>
+					<button ms-click-1="click1" ms-click="click2" ms-click-3="click3">点我</button>
+				</div>
+				<div>{{str1}}</div>
+				<div>{{str2}}</div>
+				<div>{{str3}}</div>
+			</div>
+		</fieldset>
+	</div>
+</body>
+<script type="text/javascript">
+var count =1;
+	avalon.ready(function(){
+		var vm1 = avalon.define({
+			$id:"test",
+			str1:1,
+			str2:2,
+			str3:3,
+			click1:function(){
+				vm1.str1 = "xxxxxxxx"+(count++);
+				alert(1);
+			},
+			click2:function(){
+				vm1.str2 = "xxxxxxxx"+(count++);
+				alert(2);
+
+			},
+			click3:function(){
+				vm1.str3 = "xxxxxxxx"+(count++);
+				alert(3);
+
+			},
+		});
+		
+		avalon.scan();
+
+	})
+
+</script>
+</html>
