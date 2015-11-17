@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>update-model 数据的更新</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+	<style type="text/css" media="screen">
+		td{
+			border:1px solid #dcdcdc;
+		}
+	</style>
+</head>
+<body>
+	<div ms-controller="test">
+		<ul>
+			<li ms-repeat="data">{{$key}}--{{$val}}</li>
+		</ul>
+		<ul>
+			<li ms-repeat="array_1">{{el}}</li>
+		</ul>
+		<ul>
+			<li ms-repeat="array_2">{{el.text}}</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+
+	
+		var vm1 = avalon.define({
+			$id:"test",
+			data:{
+				aaa:111,
+				bbb:222,
+				ccc:333
+			},
+			array_1:['a','b','c'],
+			array_2:[
+				{text:'a'},
+				{text:'b'},
+				{text:'c'}
+			]
+		});
+		
+		avalon.scan();
+		//对象数据，键值的更新
+		setTimeout(function(){
+			vm1.data.aaa="ppp";	
+		},1000)
+		
+		//对象数据，键值对的更新
+		setTimeout(function(){
+			vm1.data={
+				ddd:"ddd",
+				eee:"eee",
+				fff:"fff"
+			};	
+		},3000)
+
+		//数组数据，数值的更新
+		setTimeout(function(){
+			vm1.array_1.set(1,"new value");	
+			// vm1.array_1[0] = "new value";	
+		},5000)
+
+		//数组数据，对象值的更新
+		setTimeout(function(){
+			vm1.array_2[0].text="new a";
+		},7000)
+</script>
+</html>

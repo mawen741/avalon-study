@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>exp_tab tab切换案例</title>
+	<script type="text/javascript" src="../../js/avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		.pannel{
+			width: 200px;
+			height: 200px;
+			border:1px solid #ccc;
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body ms-controller="tabs">
+	<button ms-repeat="array" ms-click="toggle($index)">{{$index}}</button>
+	<div ms-repeat="array" ms-if-loop="currentIndex === $index" class="pannel">{{el.text}}</div>
+</body>
+<script type="text/javascript">
+	
+		var vm1 = avalon.define({
+			$id:"tabs",
+			array:[
+				{text:111111},
+				{text:222222},
+				{text:333333},
+				{text:444444}
+			],
+			currentIndex:0,
+			toggle:function(index){
+				vm1.currentIndex = index;
+			}
+		});
+		
+		
+		
+
+</script>
+</html>

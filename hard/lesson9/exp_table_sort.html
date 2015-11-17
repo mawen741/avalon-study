@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>exp_table_sort 表格排序案例</title>
+	<script type="text/javascript" src="../../js/avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body ms-controller="repeatGrid">
+	<p>
+		<select ms-duplex="selected">
+			<option ms-repeat="options">{{el}}</option>
+		</select>
+		<select ms-duplex="trend">
+			<option value="1">up</option>
+			<option value="-1">down</option>
+		</select>
+	</p>
+	<table width="500px" border="1">
+		<tr>
+			<th>name</th>
+			<th>size</th>
+			<th>date</th>
+		</tr>
+		<tr ms-repeat="data">
+			<td>{{el.name}}</td>
+			<td>{{el.size}}</td>
+			<td>{{el.date}}</td>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+	
+		var vm1 = avalon.define({
+			$id:"repeatGrid",
+			options:["name","size","date"],
+			data:[
+				{"name":"aaa",size:213,date:Date.now() +20},
+				{"name":"bbb",size:214,date:Date.now() -4},
+				{"name":"ccc",size:215,date:Date.now() -7},
+				{"name":"ddd",size:216,date:Date.now() +9},
+				{"name":"eee",size:217,date:Date.now() -20}
+			],
+			selected:"name",
+			trend:1
+		});
+		vm1.$watch("selected",function(v){
+			var t = parseFloat(vm1.trend);
+			vm1.data.sort(function(a,b){
+				var ret = a[v]>b[v]?1:-1;
+				return t*ret;
+			})
+		})
+		vm1.$watch("trend",function(t){
+			var v = vm1.selected,t=parseFloat(t);
+			vm1.data.sort(function(a,b){
+				var ret = a[v]>b[v]?1:-1;
+				return t*ret;
+			})
+		})
+		
+		
+
+</script>
+</html>

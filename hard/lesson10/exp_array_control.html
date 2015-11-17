@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>exp_array_control 监控数组方法使用案例</title>
+	<script type="text/javascript" src="../../js/avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		.pannel{
+			width: 200px;
+			height: 200px;
+			border:1px solid #ccc;
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body ms-controller="test">
+	<p>监控数组拥有以下方法，我们可以操作他们就能同步对应的区域</p>
+	<blockquote>
+		Push,PushAll,Shift,unshift,pop,slice,splice,remove,removeAt,removeAll,clear,ensure,sort,reverse,set
+	</blockquote>
+	<ul>
+		<li ms-repeat="array">数组的第{{$index}}个元素为{{el}}</li>
+	</ul>
+	<p>对数组进行push操作，并回车<input type="text" ms-keypress="push"></p>
+	<p>对数组进行unshift操作，并回车<input type="text" ms-keypress="unshift"></p>
+	<p>对数组进行ensure操作，并回车<input type="text" ms-keypress="ensure"><br/>
+		(只有数组不存在此元素才push进去)
+	</p>
+	<p>对数组进行remove操作，并回车<input type="text" ms-keypress="remove"></p>
+	<p>对数组进行removeAt操作，并回车<input type="text" ms-keypress="removeAt"></p>
+	<p><button ms-click="sort">对数组进行srot操作</button></p>
+	<p><button ms-click="reverse">对数组进行reverse操作</button></p>
+	<p><button ms-click="shift">对数组进行shift操作</button></p>
+	<p><button ms-click="pop">对数组进行pop操作</button></p>
+</body>
+<script type="text/javascript">
+var vm = avalon.define({
+	$id:"test",
+	array:['a','b','c','d','e'],
+	removeAt:function(){
+		if(isFinite(this.value) && e.which == 13){ //this为input元素
+			vara = ~~this.value;
+			vm.array.removeAt(a);
+		}
+	},
+	init:function(){
+		"push,unshift,remove,ensure".replace(/\w/g,function(method){
+			vm[method] = function(e){
+				if(this.value && e.which == 13){ //this为input元素
+					vm.array[method](this.value);
+					this.value = '';
+				}
+			}
+		})
+
+		"pop,shift,sort,reverse".replace(/\w/g,function(method){
+				vm[method] = function(e){
+					vm.array[method]();
+				};
+			})
+
+	}
+
+})
+vm.init();
+
+
+
+	
+
+</script>
+</html>
