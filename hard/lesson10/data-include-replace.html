@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>data-include-replace 目标操作回调与缓存</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body ms-controller="test">
+	<button ms-click="change">切换模板</button>
+	<div ms-include-src="'include2'+aaa" class="contain"></div>
+	<div ms-include-src="'include2'+aaa" class="contain" data-include-replace="true"></div>
+</body>
+<script type="text/javascript">
+avalon.templateCache["aaa.html"] = '<strong>aaaaaaaa</strong>';
+avalon.templateCache["bbb.html"] = '<em>bbbbbbbbb</em>';
+var vm = avalon.define({
+	$id:"test",
+	aaa:"aaa.html",
+	change:function(){
+		vm.aaa = vm.aaa=="aaa.html"?"bbb.html":"aaa.html";
+	}
+
+})
+
+
+
+
+	
+
+</script>
+</html>

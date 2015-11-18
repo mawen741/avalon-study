@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-include 嵌入到页面的模板</title>
+	<script type="text/javascript" src="../../js/avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body ms-controller="test">
+	<script id="tpl" type="avalon">
+		here,{{3+6*5}}
+	</script>
+	<script id="lala" type="avalon">
+		<strong>{{name}}</strong>!!!
+	</script>
+	<script id="hehe" type="avalon">
+		<em>{{content}}</em>!!!
+	</script>
+	<p>
+		<button ms-click="change">切换到子模板</button>
+	</p>
+	<div ms-include="'tpl'"></div>
+	<div ms-include="eee"></div>
+</body>
+<script type="text/javascript">
+var vm = avalon.define({
+	$id:"test",
+	name:"angel",
+	eee:"lala",
+	content:"引入内部模板",
+	change:function(){
+		vm.eee = vm.eee === "lala"?"hehe":"lala";
+	}
+
+})
+
+
+
+
+	
+
+</script>
+</html>

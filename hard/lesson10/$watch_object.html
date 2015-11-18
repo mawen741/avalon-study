@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>$watch-object 属性监听（下）</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		.ms-hover div:hover{
+			background-color: yellowgreen;
+		}
+	</style>
+</head>
+<body ms-controller="test" class="ms-hover">
+	<div>{{aaa.bbb.ccc}}</div>
+	
+</body>
+<script type="text/javascript">
+var vm = avalon.define({
+	$id:"test",
+	aaa:{
+		bbb:{
+			ccc:1
+		}
+	}
+})
+// var fn = function(){
+// 	console.log(vm.aaa+"/"+vm.bbb)
+// }
+// vm.$watch("aaa",fn);
+// vm.$watch("bbb",fn);
+
+vm.aaa.bbb.$watch("ccc",function(a,b){
+	console.log("------------");
+	console.log(a,b);
+})
+setTimeout(function(){
+	vm.aaa.bbb.ccc = 222;
+},1000)
+
+
+
+	
+
+</script>
+</html>

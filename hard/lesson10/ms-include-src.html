@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-include-src 独立成子页面的模板</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body>
+	<h3 style="text-align:center;">ms-include-src</h3>
+	<div ms-controller="test">
+		<select ms-duplex="url">
+			<option>template1</option>
+			<option>template2</option>
+			<option>template3</option>
+		</select>
+		<div ms-include-src="include{{url}}.html"></div>
+	</div>
+</body>
+<script type="text/javascript">
+var vm = avalon.define({
+	$id:"test",
+	url:"template1",
+	name:"wo shi yi ge name",
+	password:"",
+	array:[1,2,3,4,5,6,7],
+	add:function(e){
+		if(this.value && e.which == 13){
+				var a =this.value;
+				vm.array.push(a);
+				this.value="";
+		}
+	}
+
+})
+
+
+
+
+	
+
+</script>
+</html>

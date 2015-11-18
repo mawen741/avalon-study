@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>$watch 属性监听（上）</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		.ms-hover div:hover{
+			background-color: yellowgreen;
+		}
+	</style>
+</head>
+<body ms-controller="test" class="ms-hover">
+	<div>{{aaa}}</div>
+	<button ms-click="click('aaa')">点我改变值</button>
+	<div>{{$ccc}}</div>
+	<button ms-click="click('$ccc')">点我改变值</button>
+	<div>{{ddd}}</div>
+	<button ms-click="click('ddd')">点我改变值</button>
+</body>
+<script type="text/javascript">
+avalon.templateCache["aaa.html"] = '<strong>aaaaaaaa</strong>';
+avalon.templateCache["bbb.html"] = '<em>bbbbbbbbb</em>';
+var vm = avalon.define({
+	$id:"test",
+	aaa:"2",
+	$ccc:"1",
+	ddd:"1",
+	$skipArray:["ddd"],
+	click:function(a){
+		vm[a] = new Date -0;
+	}
+
+})
+vm.$watch("aaa",function(a,b){
+	console.log(a);
+	console.log(b);
+})
+vm.$watch("$ccc",function(a,b){
+	console.log(a);
+	console.log(b);
+})
+vm.$watch("ddd",function(a,b){
+	console.log(a);
+	console.log(b);
+})
+
+
+
+
+	
+
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>templateCache_data_include_loaded 目标操作回调与缓存</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body ms-controller="test">
+	<div ms-include-src="aaa" data-include-loaded="adjust"></div>
+	<p>
+		<button ms-click="change">点我切换模板</button>
+	</p>
+</body>
+<script type="text/javascript">
+avalon.templateCache["aaa.html"] = '<strong>aaaaaaaa</strong>';
+avalon.templateCache["bbb.html"] = '<em>bbbbbbbbb</em>';
+var vm = avalon.define({
+	$id:"test",
+	aaa:"aaa.html",
+	change:function(){
+		vm.aaa = vm.aaa== "aaa.html"?"bbb.html":"aaa.html";
+	},
+	adjust:function(tmpl){
+		//tmpl 是模板内容 
+		return tmpl+" "+(new Date-0)
+	}
+
+})
+
+
+
+
+	
+
+</script>
+</html>

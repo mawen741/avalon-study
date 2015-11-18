@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>$watch-multiple 属性监听（上）</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		.ms-hover div:hover{
+			background-color: yellowgreen;
+		}
+	</style>
+</head>
+<body ms-controller="test" class="ms-hover">
+	<div>{{aaa}}</div>
+	<button ms-click="click('aaa')">点我改变值</button>
+	<div>{{$ccc}}</div>
+	<button ms-click="click('$ccc')">点我改变值</button>
+	<div>{{bbb}}</div>
+	<button ms-click="click('bbb')">点我改变值</button>
+</body>
+<script type="text/javascript">
+var vm = avalon.define({
+	$id:"test",
+	aaa:"2",
+	$ccc:"1",
+	bbb:"1",
+	ddd:"2",
+	$skipArray:["ddd"],
+	click:function(a){
+		vm[a] = new Date -0;
+	}
+
+})
+// var fn = function(){
+// 	console.log(vm.aaa+"/"+vm.bbb)
+// }
+// vm.$watch("aaa",fn);
+// vm.$watch("bbb",fn);
+
+vm.$watch("$all",function(name,a,b){
+	console.log("------------");
+	console.log(name,a,b);
+})
+
+
+
+	
+
+</script>
+</html>

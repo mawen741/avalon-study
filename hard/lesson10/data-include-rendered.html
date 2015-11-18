@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>data-include-rendered 目标操作回调与缓存</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+<body ms-controller="test">
+	<div ms-include-src="'temp.html'" data-include-rendered="render"></div>
+</body>
+<script type="text/javascript">
+avalon.templateCache["aaa.html"] = '<strong>aaaaaaaa</strong>';
+avalon.templateCache["bbb.html"] = '<em>bbbbbbbbb</em>';
+var vm = avalon.define({
+	$id:"test",
+	render:function(){
+		console.log("render")
+	}
+
+})
+
+
+
+
+	
+
+</script>
+</html>

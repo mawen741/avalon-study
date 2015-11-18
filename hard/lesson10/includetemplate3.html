@@ -1,0 +1,7 @@
+<h1>我是template3</h1>
+<ul ms-each-el="array">
+	<li>第{{$index+1}}个元素：{{el}}
+	<button ms-click="$remove">点我删除</button>
+	</li>
+</ul>
+<p>添加新元素，然后回车<input type="text" ms-keypress="add"></p>

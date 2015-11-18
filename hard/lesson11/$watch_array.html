@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>$watch-array 属性监听-数组（下）</title>
+	<script type="text/javascript" src="avalon.min.js"></script>
+	<style type="text/css" media="screen">
+		.ms-hover div:hover{
+			background-color: yellowgreen;
+		}
+	</style>
+</head>
+<body ms-controller="test" class="ms-hover">
+	<div ms-repeat="array" >
+		{{el}}
+	</div>
+	<button ms-click="click('array')">点击增加一项</button>
+</body>
+<script type="text/javascript">
+avalon.ready(function(){
+	var vm = avalon.define({
+			$id:"test",
+			array:[1,2,3,4,5],
+			click:function(){
+				vm.array.push(new Date-0);
+			}
+		})
+		// var fn = function(){
+		// 	console.log(vm.aaa+"/"+vm.bbb)
+		// }
+		// vm.$watch("aaa",fn);
+		vm.array.$watch("length",function(a,b){
+			console.log(a,b);
+		});
+		avalon.scan();
+})
+
+
+
+
+
+
+	
+
+</script>
+</html>
