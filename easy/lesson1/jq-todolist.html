@@ -28,7 +28,7 @@
 		$("#form").submit(function(e){
 			var val = $("#inp").val(),
 				h = '';
-				console.log(val);
+			
 				val == ''?"":h += '<li>'+val+'<a href="javascript:" class="del">x</a></li>';$("#list").append(h);
 				$("#inp").val("");
 				$("#list").children("li").length == ''?$("#count").html(''):$("#count").html("您有"+$("#list").children("li").length+"个未完成的任务");

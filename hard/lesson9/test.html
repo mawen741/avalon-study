@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>unobservable</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script src="../../js/avalon.js"></script>
+        <script src="../../js/jquery-1.9.1.js"></script>
+        <script>
+ 
+   
+    $(function(){
+        var  vm = avalon.define({
+        $id: "test",
+        $aaa: "sss",
+        $skipArray: ["ccc"],
+        aaa: 111,
+        bbb: 222,
+        ccc: 333,
+        fn: function() {
+            return "函数"
+        },
+        click: function() {
+            vm.$aaa = vm.aaa = vm.bbb = vm.ccc = "change"
+            vm.fn = function() {
+                return "----------"
+            };
+            alert(vm.fn());
+            vm.ajax();
+        },
+        ajax:function(){
+             $.ajax({
+                url:"http://www.asd.com",
+                data:{name:123},
+                type:"post",
+                success:function(){
+                    alert(1);
+                },
+                error:function(){
+                    alert(2);
+                },
+                complete:function(){
+                    alert(3);
+                    vm.aaa='我是ajax';
+                }
+            })
+        }
+    })
+      avalon.scan();
+      var M={
+        aa:function(){
+            $.ajax({
+                url:"http://www.asd.com",
+                data:{name:123},
+                type:"post",
+                success:function(){
+                    alert(1);
+                },
+                error:function(){
+                    alert(2);
+                },
+                complete:function(){
+                    alert(3);
+                    vm.aaa='我是ajax';
+                }
+            })
+        }
+      }
+    })
+        </script>
+    </head>
+    <body ms-controller="test">
+        <p>{{$aaa}}</p>
+        <p>{{aaa}}</p>
+        <p>{{bbb}}</p>
+        <p>{{ccc}}</p>
+        <p>{{fn()}}</p>
+        <button type="button" ms-click="click">点我</button>
+        <button class="asd">也点我试试</button>
+    </body>
+
+</html>

@@ -19,6 +19,7 @@
       <a ms-href="'#!/'+ more_name + '/' + el.id" ms-title="el.title">{{el.title}}</a>
     </li>
   </ul>
+  <div ms-skip="list">{{aaa}}</div>
 </div>
 <script type="text/javascript">
   var vm = avalon.define({
@@ -27,6 +28,7 @@
     more_text: "更多公告",
     gg:gg,
     bd:bd,
+    aaa:"asdasdasd",
     infoList:gg,
     changeUL:function(flag){
       if(flag){  //鼠标移过“公告”选项卡头部

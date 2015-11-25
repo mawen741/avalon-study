@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>unobservable</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script src="../../js/avalon.js"></script>
+        <style>
+        .active{
+            display: block;
+            height: 20px;
+            background-color: red;
+        }
+        .aaa{
+            margin-top: 50px;
+            height: 100px;
+            background-color: #ccc;
+        }
+        </style>
+  
+        
+  
+    </head>
+    <body ms-controller="test">
+       <div class="channe2l">
+            <a ms-class="active:channel[0]" ms-on-click="clickH(0)"><h2>频道1</h2></a>
+            <a ms-class="active:channel[1]" ms-on-click="clickH(1)"><h2>频道2</h2></a>
+            <a ms-class="active:channel[2]"><h2>频道3</h2></a>
+            <a ms-class="active:channel[3]"><h2>频道4</h2></a>
+            <a ms-class="active:channel[4]"><h2>频道5</h2></a>
+            <a ms-class="active:channel[5]"><h2>频道6</h2></a>
+        </div>
+        <div ms-on-mousewheel="callback" class="aaa">
+            {{text}}
+        </div>
+    </body>
+    <script>
+     avalon.ready(function(){
+        var vm = avalon.define({
+            $id:"test",
+            text:"",
+            channel:[false,false,true,false,false,true],
+            clickH:function(index){
+                vm.channel.set(index,!vm.channel[index]);
+            },
+            callback:function(e){
+                // alert(123);
+                vm.text = e.wheelDelta + "  " + e.type
+            }
+        })
+        avalon.scan();
+     })   
+    </script>
+
+</html>
