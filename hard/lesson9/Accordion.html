@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../js/avalon.js"></script>
+</head>
+<style type="text/css">
+.test{margin:20px auto;width:320px;}
+*{padding:0;margin: 0;}
+ 	h3{height:30px;border: 1px solid black;background:#ccc;}
+ 	p{height:200px;border:1px solid black;border-top:none;border-bottom: none;}
+	h3,p{width:300px;}
+</style>
+<script type="text/javascript">
+	var vm=avalon.define({
+		$id:"test",
+		number: 0,
+		toggle: function(i) {
+                    vm.number = i;
+                }
+	})
+</script>
+<body>
+	<div ms-controller="test" class="test">
+		<h3 ms-click="toggle(0)">标题1</h3>
+		<p  ms-if="number === 0">内容1</p>
+		<h3 ms-click="toggle(1)">标题2</h3>
+		<p  ms-if="number === 1">内容2</p>
+		<h3 ms-click="toggle(2)">标题3</h3>
+		<p style="border-bottom:1px solid black;"  ms-if="number === 2">内容3</p>
+	</div>
+</body>
+</html>
