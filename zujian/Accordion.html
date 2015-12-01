@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+	<script type="text/javascript" src="../js/avalon.min.js"></script>
+</head>
+<style type="text/css">
+	 #Accordion{
+          margin-top: 20px;
+        }
+        .sectionTitle a:hover{
+          text-decoration: none;
+        }
+        .sectionTitle a{
+          display: block;
+          background:rgba(222,222,222,0.5);
+          padding: 5px;
+          margin-top: 2px;
+        }
+        .sectionContent{
+          padding: 10px;
+          border: 1px solid #d4d4d4;
+        }
+</style>
+
+<body>
+	<div ms-controller="Accordion" id="Accordion">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2" ms-with="arr">
+				<div class="sectionTitle" ms-on-click="handleAccordion($index)"><a href="javascript:">{{el.title}}</a></div>
+				<div class="sectionContent" ms-if-loop="currentIndex === $index">{{el.content}}</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+<script type="text/javascript">
+avalon.ready(function(){
+	var vm = avalon.define({
+		$id:"Accordion",
+		currentIndex:0,
+		arr:[
+			{
+				title:"Section1",
+				content:"This is section1"
+			},{
+				title:"Section2",
+				content:"This is section2"
+			},{
+				title:"Section3",
+				content:"This is section3"
+			},{
+				title:"Section4",
+				content:"This is section4"
+			},{
+				title:"Section5",
+				content:"This is section5"
+			}
+		],
+		handleAccordion:function(index){
+			vm.currentIndex = index;
+		}
+	})	
+	avalon.scan();
+})
+	
+</script>
+</html>

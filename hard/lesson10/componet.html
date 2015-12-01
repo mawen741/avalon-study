@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            div {height:50px;width:200px;background:green;margin:5px;}
+        </style>
+        <script src="avalon.min.js"></script>
+        <script>
+            avalon.component('ms:abc',{
+                c:1,
+                $template:'<div>{{arr}}</div>',
+                onClick:function(){
+                    console.log(this);
+                    alert(12);
+                },
+                $ready:function(vm,el){
+                   console.log(vm.$id);
+                   console.log(vm);
+                   console.log(el);
+                }
+            });
+            var vm = avalon.define({
+                $id:'test',
+                arr:[1,2,3]
+            })
+            var vm2 = avalon.define({
+                $id:'test2',
+                arr2:[1,2,1]
+            })
+        </script>
+    </head>
+    <body ms-controller="test">
+        <header>
+            <ms:abc ms-repeat="arr" ms-attr-identifier="abc{{$index}}" ></ms:abc>
+        </header>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>unobservable</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
+        <script src="../../js/avalon.js"></script>
+        <style>
+            #test{
+                margin-top: 20px;
+            }
+            table{
+                margin-top: 10px;
+            }
+            table tr th,table tr td{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body ms-controller="test" id="test">
+      <div class="row">
+         <div class="col-lg-4 col-lg-offset-4">
+             <input type="text" class="form-control" placeholder="input sth" ms-on-keyUp="handleChange">
+         </div>   
+         <div class="col-lg-4 col-lg-offset-4">
+            <table width="100%">
+                <tr ms-if-loop="newArray.size()>0">
+                    <th>Title</th>
+                    <th>Link</th>
+                </tr>
+                <tr ms-repeat="newArray">
+                    <td>{{el.title}}</td>
+                    <td><a ms-attr-href={{el.url}}>{{el.link}}</a></td>
+                </tr>
+            </table>
+         </div>
+      </div>
+    </body>
+    <script>
+     avalon.ready(function(){
+        var vm = avalon.define({
+            $id:"test",
+            newArray:[],
+            array:[
+                {
+                    title:"aaaaa",
+                    url:"www.baidu1.com",
+                    link:"百度一下1"
+                },{
+                    title:"sssss",
+                    url:"www.baidu2.com",
+                    link:"百度一下2"
+                },{
+                    title:"ddddd",
+                    url:"www.baidu3.com",
+                    link:"百度一下3"
+                },{
+                    title:"asdasd",
+                    url:"www.baidu4.com",
+                    link:"百度一下4"
+                },{
+                    title:"eqwqewq",
+                    url:"www.baidu5.com",
+                    link:"百度一下5"
+                },{
+                    title:"asddxcz",
+                    url:"www.baidu6.com",
+                    link:"百度一下6"
+                },{
+                    title:"aaaaaa",
+                    url:"www.baidu7.com",
+                    link:"百度一下7"
+                }
+            ],
+            handleChange:function(){
+                var val = this.value;
+                vm.newArray =[];
+                for(var i=0,j=vm.array.length;i<j;i++){
+                    if(vm.array[i].title.indexOf(val)>-1 || val.indexOf(vm.array[i].title) > -1){
+                        vm.newArray.push(vm.array[i]);
+                    }
+                }
+            },
+            init:function(){
+                vm.newArray = vm.array;
+            }
+        })
+        vm.init();
+        avalon.scan();
+     })
+    </script>
+
+</html>

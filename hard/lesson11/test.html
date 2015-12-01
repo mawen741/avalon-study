@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="avalon.min.js"></script>
+    </head>
+    <body>
+        <script>
+            var vm = avalon.define({
+                $id: "test",
+                array: [1, 2,3],
+                $skipArray: ["x0", "x1", "x2","butttonOpts"],
+                x0: {//x0, x1, x2为ms:button的配置对象
+                    a: "aaa",
+                    "ms:text": {//这个为ms:button的ms:text的默认配置对象
+                        b: 44
+                    }
+                },
+                x1: {
+                    a: "222",
+                    "ms:text": {
+                        b: 55
+                    }
+                },
+                x2: {
+                    a: "333",
+                    "ms:text": {
+                        b: 66
+                    }
+                },
+                buttonOpts: {
+			     a: 555
+			  }
+
+            })
+ 
+            avalon.component("ms:button", {
+                a: 1,
+                $replace: 1,
+                $ready: function (vm, elem) {
+                    console.log("BUTTON构建完成")
+                    console.log(elem)
+                },
+                $template: "<button type='button'><span>|<ms:text></ms:text>|</span>{{a}}|<ms:text><ms:text/></button>",
+                onClick:function(){
+                	alert(312);
+                }
+            })
+            avalon.component("ms:text", {
+                b: "默认值",
+                $replace: 1,
+                $ready: function () {
+                    console.log("TEXT构建完成")
+                },
+                $template: "<strong>{{b}}</strong>"
+            })
+        </script>
+
+        <div ms-controller="test">
+            <ms:button ms-repeat="array" ms-attr-config="x{{$index}}" ></ms:button>
+            <ms:button2 config="buttonOpts"></ms:button2>
+
+        </div>
+ 
+    </body>
+</html>
