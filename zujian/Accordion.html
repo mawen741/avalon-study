@@ -29,7 +29,7 @@
 	<div ms-controller="Accordion" id="Accordion">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2" ms-with="arr">
-				<div class="sectionTitle" ms-on-click="handleAccordion($index)"><a href="javascript:">{{el.title}}</a></div>
+				<div class="sectionTitle" ms-on-click="handleAccordion($index)"><a href="javascript:;">{{el.title}}</a></div>
 				<div class="sectionContent" ms-if-loop="currentIndex === $index">{{el.content}}</div>
 			</div>
 		</div>
@@ -57,6 +57,9 @@ avalon.ready(function(){
 			},{
 				title:"Section5",
 				content:"This is section5"
+			},{
+				title:"Section6",
+				content:"This is section6"
 			}
 		],
 		handleAccordion:function(index){
