@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ms-duplex-bollean</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+	<script type="text/javascript" src="../../js/avalon.min.js"></script>
+</head>
+<body>
+	<div ms-controller="test">
+		<label><input type="checkbox" ms-on-click="toggle" ms-duplex-checked="all"> {{text}}</label>
+		<ul>
+			<li ms-repeat="array">
+				<label><input type="checkbox" ms-duplex-checked="el.checked" ms-on-change="change($index)">{{el.title}}</label>
+			</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	avalon.ready(function(){
+		var vm = avalon.define({
+			$id:"test",
+			array:[
+				{
+					checked:false,
+					title:1111
+				},{
+					checked:false,
+					title:2222
+				},{
+					checked:false,
+					title:3333
+				}
+			],
+			toggle:function(){
+				if(this.checked){  //quanxuan
+					vm.array.map(function(item){
+						item.checked = true;
+					});
+				}else{
+					vm.array.map(function(item){
+						item.checked = false;
+					})
+				};
+			},
+			all:false,
+			text:"全选",
+			change:function(index){
+				var flag = true;
+				flag = vm.array.every(function(el){
+					return el.checked == true
+				})
+				
+				if(flag){
+					vm.all=true;
+				}else{
+					vm.all=false;
+					console.log(111)
+				}
+			}
+		});
+		avalon.scan();
+	})
+
+</script>
+</html>

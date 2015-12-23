@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="avalon.min.js"></script>
+        <style>
+        .aaa{
+                font-size: 20px;
+            }</style>
+    </head>
+    <body>
+       <div ms-controller="test">
+            <span>{{h | html}}</span>
+            <button ms-on-click="change">change</button>
+       </div>
+ 
+    </body>
+     <script>
+     var vm  = avalon.define({
+        $id:"test",
+        h:"",
+        change:function(){
+            var a = '<h1 style="color:red" class="aaa">123</h1>';
+            vm.h = a ;
+        }
+     })
+        </script>
+</html>
